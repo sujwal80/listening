@@ -1,0 +1,79 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music for everyone</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        .navbar{
+            height: 75px;
+        }
+
+        .search-bar{
+            margin-top: 10%;
+            text-align: center;
+            font-size: 35px;
+        }
+
+        .search-bar .src input{
+            border-radius: 10px;
+        }
+        
+        .search-bar .src button{
+            color: white;
+            background-color: black;
+            border-radius: 10px;
+            border-width: 0px;
+            font-size: 30px;
+        }
+
+        .search-bar .src button:hover{
+            background: #1ED760;
+        }
+
+        .card{
+            margin-left: 39%;
+            margin-top: 20px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home_page' %}">Listen Music</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <div class = "search-bar">
+        <form class="src" action="" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="Search music." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+
+    {% for music in musics %}
+        <div class="card" style="width: 25rem;">
+            <img src="{% static 'images/thumbnail.jpeg' %}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{music.name}}</h5>
+                <audio id="Test_Audio" controls>  
+                    <source src="{{music.music_file.url}}" type="audio/mpeg">  
+                </audio> 
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>

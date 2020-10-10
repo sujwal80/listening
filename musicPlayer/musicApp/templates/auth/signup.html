@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Sign Up-Music Player</title>
+    <style>
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 20px;
+            font-family: serif;
+        }
+
+        h5 {
+            text-align: center;
+        }
+
+        .line-through{
+            margin-top: 5%;
+            margin-left: 25%;
+            margin-right: 30%;
+            border: 0.01ex solid black;
+            border-radius: 5px;
+        }
+
+        .form-group{
+            width: 35%;
+            padding-top: 1%;
+            display: inline-block;
+            margin-left: 30%;
+            margin-right: 25%;
+        }
+
+        .btn-primary{
+            margin-left: 30%;
+            margin-right: 30%;
+            margin-top: 1%;
+        }
+    </style>
+    
+</head>
+<body>
+    <h2>Sign up for free to start listening.</h2>
+
+    <hr class="line-through">
+
+    <h5>Sign up with your email address</h5>
+    
+    <form method="POST">
+
+        <div class="form-group">
+            {% csrf_token %}
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required placeholder="Enter your email.">
+        </div>
+
+        <div class="form-group">
+            {% csrf_token %}
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" minlength='8' required placeholder="Enter you password.">
+        </div>
+
+        <div class="form-group">
+            {% csrf_token %}
+            <label for="exampleInputPassword1">Full Name</label>
+            <input type="text" class="form-control" id="validationCustom01" name="name" required placeholder="Enter you name" maxlength="50">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</body>
+</html>

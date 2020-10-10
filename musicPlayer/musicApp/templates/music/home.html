@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listen Music</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+
+        .heading{
+          height: 70vh;
+          text-align: center;
+          align-items: center;
+          background-size: 195%;
+          background-position: top 25% center;
+          display: flex;
+          justify-content: center;
+        }
+
+        .h1-homepage{
+          color: #1ED760;
+          font-size: 108px;
+          font-weight: 900;
+          letter-spacing: 0.02em;
+          line-height: 1.15;
+          width: 754px;
+        }
+        
+        .btn-goto{
+          padding: 16px 40px 16px;
+          font-size: 18px;
+          letter-spacing: 1.4px;
+          background-color: #1ED760;
+          color: #2940a8;;
+          border: 0ch;
+          border-radius: 500px;
+          display: inline-block;
+          margin-top: 45vh;
+        }
+
+        .btn.mr-3.btn-outline-success{
+          border: 0ch;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home_page' %}">Listen Music</a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <nav class="navbar navbar mt-2 navbar-dark bg-dark">
+        {% if 'authenticated' not in request.session %}
+          <form class="form-inline">
+            <button class="btn mr-3 btn-outline-success  " type="button" onclick="location.href = '{% url 'login_page' %}'">Login</button>
+            <button class="btn mr-3 btn-outline-success " type="button" onclick="location.href='{% url 'signup_page' %}'">Sign up</button>
+          </form>
+        {% else %}
+          <form class="form-inline">
+            <button class="btn mr-3 btn-outline-success" type="button" onclick="location.href = '{% url 'logout_page' %}'">Logout</button>
+          </form>
+        {% endif %}
+    </nav>
+  </nav>
+  
+  <div class="heading">
+    <h1 class="h1-homepage">Listening is everything</h1>
+    {% if 'authenticated' not in request.session %}
+      <button class="btn-goto" type="button" onclick="location.href = '{% url 'signup_page' %}'">Start Listening</button>
+    {% else %}
+      <button class="btn-goto" type="button" onclick="location.href = '{% url 'home_music_page' %}'">Start Listening</button>
+    {% endif %}
+  </div>
+</body>
+</html>
